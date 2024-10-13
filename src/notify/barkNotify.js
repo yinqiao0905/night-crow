@@ -4,6 +4,7 @@ let BARK_ICON = '';
 let BARK_SOUND = '';
 let BARK_GROUP = '';
 const timeout = 15000; //超时时间(单位毫秒)
+const axios = require("axios")
 
 function barkNotify(text, description, params = {}) {
     const queryString = new URLSearchParams({
@@ -13,7 +14,7 @@ function barkNotify(text, description, params = {}) {
         ...params
     }).toString();
     const url = `${BARK_PUSH}/${encodeURIComponent(text)}/${encodeURIComponent(description)}`
-    fetch(url + '?' + queryString, {
+    axios.get(url + '?' + queryString, {
         method: 'get',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

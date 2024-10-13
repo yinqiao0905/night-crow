@@ -1,0 +1,25 @@
+{
+  "name": "cron-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/autoSign.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cron-parser": "^4.9.0",
+    "dayjs": "^1.11.13",
+    "decimal.js": "^10.4.3",
+    "dotenv": "^16.4.5",
+    "jsonfile": "^6.1.0",
+    "koa": "^2.15.3",
+    "koa-router": "^13.0.1",
+    "log4js": "^6.9.1",
+    "mysql": "^2.18.1",
+    "node-schedule": "^2.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

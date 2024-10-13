@@ -4,10 +4,11 @@ const crowDatabase = require("./db/crow")
 const schedule = require("node-schedule");
 const log4js = require('log4js');
 const logger = log4js.getLogger('crow');
+const axios = require("axios")
 logger.level = 'all'
 const fetchData = () => {
     const url = "https://api.wemixplay.com/info/v2/price-chart?symbol=CROW&range=1h"
-    return fetch(url).then(response => response.json())
+    return axios.get(url).then(response => response.json())
         .then(response => {
             const {data} = response
             if (data.chart && Array.isArray(data.chart)) {

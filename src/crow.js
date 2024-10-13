@@ -8,9 +8,9 @@ const axios = require("axios")
 logger.level = 'all'
 const fetchData = () => {
     const url = "https://api.wemixplay.com/info/v2/price-chart?symbol=CROW&range=1h"
-    return axios.get(url).then(response => response.json())
+    return axios.get(url)
         .then(response => {
-            const {data} = response
+            const data = response?.data?.data
             if (data.chart && Array.isArray(data.chart)) {
                 return data.chart.reverse().at(0)
             }

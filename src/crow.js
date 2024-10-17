@@ -52,8 +52,12 @@ const checkIsNeedNotify = async () => {
     const avg = await calcAvgValue()
     const threshold = 0.7499
     if (lastNotifyRecord) {
-        if (lastNotifyRecord.time > todayStart && Number(avg) > threshold) { //说明今天通知过了
+        if (lastNotifyRecord.time > todayStart) { //说明今天通知过了
             logger.warn('今天已经通知过了，并且已关闭通知')
+        } else {
+            if (Number(avg) > threshold) {
+                notify(await outputString(priceRecord))
+            }
         }
     } else {
         if (Number(avg) > threshold) {
@@ -62,11 +66,19 @@ const checkIsNeedNotify = async () => {
     }
 }
 
+const barkDevices = [
+    "abxKmv84S9sM472RuznQ8j"
+]
+
 const notify = (string) => {
     logger.debug('准备发送通知....')
-    // fetch(`https://api.day.app/9rjs6Dwc6DcdnH3P6eQa5J/${string}`).then(() => {
-    logger.debug('通知成功')
-    // })
+    const params = new URLSearchParams({
+        call: 1,
+        level: 'timeSensitive'
+    }).toString()
+    Promise.all(barkDevices.map(device => axios.get(`https://api.day.app/${device}/夜鸦/准备铸币咯?${params}`))).then(() => {
+        logger.info('通知成功')
+    })
 }
 
 const start = () => {

@@ -8,7 +8,8 @@ const getDatabase = () => {
         port: "3306",
         user: "root",
         password: "Admin.9527",
-        database: "crow"
+        database: "crow",
+        useConnectionPooling: true
     })
     connection.connect()
     return connection
